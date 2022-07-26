@@ -7,7 +7,7 @@ const loginUser = async (req, res) => {
   try {    
     const user = await User.signin(email, password)
 
-    const token = await createToken(user._id)
+    const token = createToken(user._id)
 
     res.status(200).json({ email, token })
   } catch (err) {
@@ -22,7 +22,7 @@ const signupUser = async (req, res) => {
   try {
     const user = await User.signup(email, password)
 
-    const token = await createToken(user._id)
+    const token = createToken(user._id)
 
     res.status(200).json({ email, token })
   } catch (err) {
