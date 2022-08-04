@@ -15,13 +15,18 @@ const WorkoutForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    if(!user) {
+      setError('Not authorized')
+      return
+    }
+
     const workout = { title, load, reps}
 
     const response = await fetch('/api/workouts', {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json', 
-        'authorization': user.token 
+        'Authorization': `Bearer ${user.token}`
       },
       body: JSON.stringify(workout)
     })

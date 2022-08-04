@@ -15,7 +15,7 @@ const Home = () => {
       const response = await fetch('/api/workouts', {
         headers: { 
           'Content-Type': 'application/json', 
-          'authorization': user.token
+          'Authorization': `Bearer ${user.token}`
         }
       })
       const json = await response.json()
@@ -25,7 +25,7 @@ const Home = () => {
       }
     }
 
-    fetchWorkouts()
+    user && fetchWorkouts()
   }, [dispatch, user])
 
   return (
